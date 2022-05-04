@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:great_places/others/app_routes.dart';
+import 'package:great_places/screens/place_form_screen.dart';
 import 'package:great_places/screens/places_list_screen.dart';
 
 void main(List<String> args) {
@@ -21,6 +23,9 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: const PlacesListScreen(),
+      routes: {
+        AppRoutes.PLACE_FORM: (ctx) => const PlaceFormScreen(),
+      },
     );
   }
 }

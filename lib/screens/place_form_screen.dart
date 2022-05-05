@@ -12,7 +12,14 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cadastro de locais'),
+        iconTheme:
+            IconThemeData(color: Theme.of(context).colorScheme.onSecondary),
+        centerTitle: true,
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
+        title: Text(
+          'Cadastro de locais',
+          style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+        ),
       ),
       body: Container(
         child: Center(child: Text('Formulário')),

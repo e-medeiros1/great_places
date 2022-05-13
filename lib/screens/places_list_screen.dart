@@ -8,23 +8,23 @@ class PlacesListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.onPrimary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(
           'Meus lugares',
-          style: TextStyle(color: Theme.of(context).colorScheme.onSecondary),
+          style: TextStyle(color: Theme.of(context).colorScheme.secondary),
         ),
         centerTitle: true,
       ),
-      body: Center(
-          child: CircularProgressIndicator(
-        color: Theme.of(context).colorScheme.onPrimary,
-      )),
+      body: const Center(),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).colorScheme.onPrimary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         onPressed: () {
           Navigator.of(context).pushNamed(AppRoutes.PLACE_FORM);
         },
-        child: const Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+          color: Theme.of(context).colorScheme.secondary,
+        ),
       ),
     );
   }

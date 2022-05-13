@@ -15,11 +15,7 @@ class PlacesListScreen extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Center(
-          // child: CircularProgressIndicator(
-          //   color: Theme.of(context).colorScheme.primary,
-          // ),
-          ),
+      body: const Center(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).colorScheme.primary,
         onPressed: () {

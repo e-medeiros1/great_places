@@ -14,18 +14,18 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
     return Scaffold(
         appBar: AppBar(
           iconTheme:
-              IconThemeData(color: Theme.of(context).colorScheme.primary),
+              IconThemeData(color: Theme.of(context).colorScheme.secondary),
           centerTitle: true,
-          backgroundColor: Theme.of(context).colorScheme.secondary,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           title: Text(
             'Cadastro de locais',
-            style: TextStyle(color: Theme.of(context).colorScheme.primary),
+            style: TextStyle(color: Theme.of(context).colorScheme.secondary),
           ),
+          elevation: 0,
         ),
         body: Column(
-          // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             const ImageInputs(),
             Expanded(
               child: Padding(
@@ -34,14 +34,15 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
                   children: [
                     TextField(
                       decoration: InputDecoration(
-                        labelText: 'Nome',
-                        labelStyle:
-                            const TextStyle(color: Colors.black, fontSize: 18),
-                        fillColor: Colors.white,
-                        focusedBorder: OutlineInputBorder(
+                        labelText: 'Título',
+                        labelStyle: TextStyle(
+                            color: Colors.grey.shade700,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w600),
+                        border: OutlineInputBorder(
                           borderSide: const BorderSide(
                             color: Colors.grey,
-                            width: 2.0,
+                            width: 1.5,
                           ),
                           borderRadius: BorderRadius.circular(25.0),
                         ),
@@ -52,49 +53,34 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
               ),
             ),
             ElevatedButton.icon(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                      Theme.of(context).colorScheme.secondary),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25),
-                      side: BorderSide(
-                        color: Theme.of(context).colorScheme.primary,
-                        width: 2,
-                      ),
+              style: ButtonStyle(
+                elevation: MaterialStateProperty.all(0),
+                backgroundColor: MaterialStateProperty.all(
+                    Theme.of(context).colorScheme.primary),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                    side: BorderSide(
+                      color: Theme.of(context).colorScheme.secondary,
+                      width: 2,
                     ),
                   ),
                 ),
-                onPressed: () {},
-                icon: Icon(
-                  Icons.add,
-                  size: 25,
-                  color: Theme.of(context).colorScheme.primary,
+              ),
+              onPressed: () {},
+              icon: Icon(
+                Icons.add,
+                size: 25,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
+              label: Text(
+                'Adicionar',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                  fontSize: 17,
                 ),
-                label: Text(
-                  'Adicionar',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontSize: 17,
-                  ),
-                ))
-            // TextButton.icon(
-            //   onPressed: () {},
-            //   icon: Icon(
-            //     Icons.add,
-            //     color: Theme.of(context).colorScheme.primary,
-            //     size: 24,
-            //   ),
-            //   label: Text(
-            //     'Adicionar',
-            //     style: TextStyle(
-            //         color: Theme.of(context).colorScheme.primary, fontSize: 17),
-            //   ),
-            //   style: ButtonStyle(
-            //     elevation: MaterialStateProperty.all(0),
-            //     // tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            //   ),
-            // )
+              ),
+            ),
           ],
         ));
   }

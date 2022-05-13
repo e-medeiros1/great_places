@@ -15,8 +15,9 @@ class _ImageInputsState extends State<ImageInputs> {
         Container(
           width: 220,
           height: 220,
-          decoration:
-              BoxDecoration(border: Border.all(width: 1, color: Colors.grey)),
+          decoration: BoxDecoration(
+              border: Border.all(width: 1.5, color: Colors.grey.shade600),
+              shape: BoxShape.circle),
         ),
         TextButton.icon(
             onPressed: () {},

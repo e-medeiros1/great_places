@@ -17,10 +17,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Meus lugares',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-          primary: Colors.black,
-          secondary: Colors.white,
-        ),
+        colorScheme: ColorScheme.fromSwatch()
+            .copyWith(primary: Colors.blueGrey, secondary: Colors.white),
       ),
       home: const PlacesListScreen(),
       routes: {

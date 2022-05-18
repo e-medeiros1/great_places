@@ -8,6 +8,7 @@ class PlaceFormScreen extends StatefulWidget {
   State<PlaceFormScreen> createState() => _PlaceFormScreenState();
 }
 
+//TO-DO: Setar a cor tema e separar label do textfield entre normal e onFocused
 class _PlaceFormScreenState extends State<PlaceFormScreen> {
   @override
   Widget build(BuildContext context) {

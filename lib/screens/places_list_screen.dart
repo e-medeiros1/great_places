@@ -6,24 +6,26 @@ class PlacesListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        title: Text(
-          'Meus lugares',
-          style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          title: Text(
+            'Meus lugares',
+            style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: const Center(),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        onPressed: () {
-          Navigator.of(context).pushNamed(AppRoutes.PLACE_FORM);
-        },
-        child: Icon(
-          Icons.add,
-          color: Theme.of(context).colorScheme.secondary,
+        body: const Center(),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          onPressed: () {
+            Navigator.of(context).pushNamed(AppRoutes.PLACE_FORM);
+          },
+          child: Icon(
+            Icons.add,
+            color: Theme.of(context).colorScheme.secondary,
+          ),
         ),
       ),
     );

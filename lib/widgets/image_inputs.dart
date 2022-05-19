@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class ImageInputs extends StatefulWidget {
@@ -8,11 +10,25 @@ class ImageInputs extends StatefulWidget {
 }
 
 class _ImageInputsState extends State<ImageInputs> {
+  File? _storageImage;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Container(
+          child: _storageImage != null
+              ? Image.file(
+                  _storageImage!,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                )
+              : Center(
+                  child: Text(
+                  'Visualização indisponível',
+                  softWrap: false,
+                  style: TextStyle(color: Colors.grey.shade700),
+                )),
           width: 220,
           height: 220,
           decoration: BoxDecoration(

@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:math';
+
 import 'package:flutter/widgets.dart';
 import 'package:great_places/Models/places.dart';
 
@@ -17,5 +20,16 @@ class GreatPlaces with ChangeNotifier {
   //Pega o item pelo id
   Places itemsByIndex(int index) {
     return _items[index];
+  }
+
+  void addPlaces(String title, File image) {
+    final newPlace = Places(
+      id: Random().nextDouble().toString(),
+      image: image,
+      title: title,
+      location: null,
+    );
+    _items.add(newPlace);
+    notifyListeners();
   }
 }

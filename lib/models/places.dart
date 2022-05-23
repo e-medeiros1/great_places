@@ -4,7 +4,7 @@ class Places {
   final String id;
   final String title;
   final File image;
-  final PlacesLocation location;
+  final PlacesLocation? location;
 
   Places({
     required this.id,

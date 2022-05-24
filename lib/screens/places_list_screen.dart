@@ -29,7 +29,7 @@ class PlacesListScreen extends StatelessWidget {
               : ListView.builder(
                   itemCount: greatPlaces.itemsCount,
                   itemBuilder: (ctx, i) => Padding(
-                    padding: const EdgeInsets.only(top: 20),
+                    padding: const EdgeInsets.only(top: 10),
                     child: ListTile(
                       style: ListTileStyle.list,
                       onTap: () {},
@@ -39,6 +39,7 @@ class PlacesListScreen extends StatelessWidget {
                             FileImage(greatPlaces.itemsByIndex(i).image),
                       ),
                       title: Text(greatPlaces.itemsByIndex(i).title),
+                      subtitle: Text(greatPlaces.itemsByIndex(i).title),
                     ),
                   ),
                 ),

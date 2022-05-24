@@ -18,30 +18,36 @@ class PlacesListScreen extends StatelessWidget {
           ),
           centerTitle: true,
         ),
-        body: Consumer<GreatPlaces>(
-          child: const Center(
-            child: Text(
-              'Nenhum lugar cadastrado',
-            ),
-          ),
-          builder: (ctx, greatPlaces, ch) => greatPlaces.itemsCount == 0
-              ? ch!
-              : ListView.builder(
-                  itemCount: greatPlaces.itemsCount,
-                  itemBuilder: (ctx, i) => Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: ListTile(
-                      style: ListTileStyle.list,
-                      onTap: () {},
-                      leading: CircleAvatar(
-                        radius: 35,
-                        backgroundImage:
-                            FileImage(greatPlaces.itemsByIndex(i).image),
-                      ),
-                      title: Text(greatPlaces.itemsByIndex(i).title),
-                      subtitle: Text(greatPlaces.itemsByIndex(i).title),
+        body: FutureBuilder(
+          future: Provider.of<GreatPlaces>(context, listen: false).loadPlaces(),
+          builder: (ctx, snapshot) => snapshot.connectionState ==
+                  ConnectionState.waiting
+              ? const Center(child: CircularProgressIndicator())
+              : Consumer<GreatPlaces>(
+                  child: const Center(
+                    child: Text(
+                      'Nenhum lugar cadastrado',
                     ),
                   ),
+                  builder: (ctx, greatPlaces, ch) => greatPlaces.itemsCount == 0
+                      ? ch!
+                      : ListView.builder(
+                          itemCount: greatPlaces.itemsCount,
+                          itemBuilder: (ctx, i) => Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: ListTile(
+                              style: ListTileStyle.list,
+                              onTap: () {},
+                              leading: CircleAvatar(
+                                radius: 35,
+                                backgroundImage: FileImage(
+                                    greatPlaces.itemsByIndex(i).image),
+                              ),
+                              title: Text(greatPlaces.itemsByIndex(i).title),
+                              subtitle: Text(greatPlaces.itemsByIndex(i).title),
+                            ),
+                          ),
+                        ),
                 ),
         ),
         floatingActionButton: FloatingActionButton(

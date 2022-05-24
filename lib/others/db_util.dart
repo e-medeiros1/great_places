@@ -23,8 +23,8 @@ class DbUtil {
     }, version: 1);
   }
 
-  //Insere informações no BD
-  static Future<void> insert( String table, Map<String, Object> data) async {
+  //Insere informações no DB
+  static Future<void> insert(String table, Map<String, Object> data) async {
     //Recebe os atributos da função acima
     final db = await DbUtil.database();
     //Passa os parâmetros + resolução de conflitos
@@ -33,5 +33,11 @@ class DbUtil {
       data,
       conflictAlgorithm: sql.ConflictAlgorithm.replace,
     );
+  }
+
+  //Fazendo leitura dos registros inseridos no DB através de uma lista de maps
+  static Future<List<Map<String, dynamic>>> getData(String table) async {
+    final db = await DbUtil.database();
+    return db.query(table);
   }
 }

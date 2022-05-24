@@ -8,6 +8,24 @@ import 'package:great_places/others/db_util.dart';
 class GreatPlaces with ChangeNotifier {
   List<Places> _items = [];
 
+  //Função responsável por carregar os locais registrados no DB
+  Future<void> loadPlaces() async {
+    //Pegando a função criada e passando o nome da tabela
+    final dataList = await DbUtil.getData('places');
+    //Insere dentro da lista de _items[];
+    _items = dataList
+        .map(
+          (item) => Places(
+            id: item['id'],
+            title: item['title'],
+            image: File(item['image']),
+            location: null,
+          ),
+        )
+        .toList();
+    notifyListeners();
+  }
+
   //Clone da lista
   List<Places> get items {
     return [..._items];

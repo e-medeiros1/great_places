@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:great_places/others/app_routes.dart';
 import 'package:great_places/providers/great_places.dart';
 import 'package:great_places/widgets/image_inputs.dart';
+import 'package:great_places/widgets/location_inputs.dart';
 import 'package:provider/provider.dart';
 
 class PlaceFormScreen extends StatefulWidget {
@@ -48,12 +49,13 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
             ),
             elevation: 0,
           ),
-          body: Column(
-            children: [
-              const SizedBox(height: 20),
-              ImageInputs(onSelectImage: this._selectImage),
-              Expanded(
-                child: Padding(
+          body: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const SizedBox(height: 15),
+                ImageInputs(onSelectImage: this._selectImage),
+                Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
                   child: Column(
                     children: [
@@ -77,37 +79,40 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
                     ],
                   ),
                 ),
-              ),
-              ElevatedButton.icon(
-                style: ButtonStyle(
-                  elevation: MaterialStateProperty.all(0),
-                  backgroundColor: MaterialStateProperty.all(
-                      Theme.of(context).colorScheme.primary),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25),
-                      side: BorderSide(
-                        color: Theme.of(context).colorScheme.secondary,
-                        width: 2,
+                const SizedBox(height: 20),
+                const LocationInputs(),
+                const SizedBox(height: 15),
+                ElevatedButton.icon(
+                  style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(0),
+                    backgroundColor: MaterialStateProperty.all(
+                        Theme.of(context).colorScheme.primary),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                        side: BorderSide(
+                          color: Theme.of(context).colorScheme.secondary,
+                          width: 2,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                onPressed: _submitForm,
-                icon: Icon(
-                  Icons.add,
-                  size: 25,
-                  color: Theme.of(context).colorScheme.secondary,
-                ),
-                label: Text(
-                  'Adicionar',
-                  style: TextStyle(
+                  onPressed: _submitForm,
+                  icon: Icon(
+                    Icons.add,
+                    size: 25,
                     color: Theme.of(context).colorScheme.secondary,
-                    fontSize: 17,
+                  ),
+                  label: Text(
+                    'Adicionar',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.secondary,
+                      fontSize: 17,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           )),
     );
   }

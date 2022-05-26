@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         title: 'Meus lugares',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch()
-              .copyWith(primary: Colors.blueGrey, secondary: Colors.white),
+              .copyWith(primary: Colors.grey.shade800, secondary: Colors.white),
         ),
         home: const PlacesListScreen(),
         routes: {

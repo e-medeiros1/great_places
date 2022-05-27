@@ -4,6 +4,8 @@
         android:label="Meus lugares"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyByudnKg_yF34BUMjbsmYErA_wX4d8495w"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

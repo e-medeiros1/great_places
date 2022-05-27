@@ -78,17 +78,6 @@ class _ImageInputsState extends State<ImageInputs> {
                 style: TextStyle(color: Colors.grey.shade600),
               ),
             ),
-            TextButton.icon(
-              onPressed: _takePicture,
-              icon: Icon(
-                Icons.photo_library,
-                color: Colors.grey.shade800,
-              ),
-              label: Text(
-                'Galeria',
-                style: TextStyle(color: Colors.grey.shade600),
-              ),
-            ),
           ],
         )
       ],

@@ -17,11 +17,11 @@ class Places {
 class PlacesLocation {
   final double latitude;
   final double longitude;
-  final String adress;
+  final String? adress;
 
-  PlacesLocation({
+  const PlacesLocation({
     required this.latitude,
     required this.longitude,
-    required this.adress,
+     this.adress,
   });
 }

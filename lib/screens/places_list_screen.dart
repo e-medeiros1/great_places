@@ -8,61 +8,59 @@ class PlacesListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          title: Text(
-            'Meus lugares',
-            style: TextStyle(color: Theme.of(context).colorScheme.secondary),
-          ),
-          centerTitle: true,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: Text(
+          'Meus lugares',
+          style: TextStyle(color: Theme.of(context).colorScheme.secondary),
         ),
-        body: FutureBuilder(
-          future: Provider.of<GreatPlaces>(context, listen: false).loadPlaces(),
-          builder: (ctx, snapshot) => snapshot.connectionState ==
-                  ConnectionState.waiting
-              ? const Center(child: CircularProgressIndicator())
-              : Consumer<GreatPlaces>(
-                  child: const Center(
-                    child: Text(
-                      'Nenhum lugar cadastrado',
-                    ),
+        centerTitle: true,
+      ),
+      body: FutureBuilder(
+        future: Provider.of<GreatPlaces>(context, listen: false).loadPlaces(),
+        builder: (ctx, snapshot) => snapshot.connectionState ==
+                ConnectionState.waiting
+            ? const Center(child: CircularProgressIndicator())
+            : Consumer<GreatPlaces>(
+                child: const Center(
+                  child: Text(
+                    'Nenhum lugar cadastrado',
                   ),
-                  builder: (ctx, greatPlaces, ch) => greatPlaces.itemsCount == 0
-                      ? ch!
-                      : ListView.builder(
-                          itemCount: greatPlaces.itemsCount,
-                          itemBuilder: (ctx, i) => Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: ListTile(
-                              style: ListTileStyle.list,
-                              onTap: () {},
-                              leading: CircleAvatar(
-                                radius: 35,
-                                backgroundImage: FileImage(
-                                    greatPlaces.itemsByIndex(i).image),
-                              ),
-                              title: Text(greatPlaces.itemsByIndex(i).title),
-                              // subtitle: Text(greatPlaces
-                              //     .itemsByIndex(i)
-                              //     .location!
-                              //     .adress
-                              //     .toString())
+                ),
+                builder: (ctx, greatPlaces, ch) => greatPlaces.itemsCount == 0
+                    ? ch!
+                    : ListView.builder(
+                        itemCount: greatPlaces.itemsCount,
+                        itemBuilder: (ctx, i) => Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: ListTile(
+                            style: ListTileStyle.list,
+                            onTap: () {},
+                            leading: CircleAvatar(
+                              radius: 35,
+                              backgroundImage:
+                                  FileImage(greatPlaces.itemsByIndex(i).image),
                             ),
+                            title: Text(greatPlaces.itemsByIndex(i).title),
+                            // subtitle: Text(greatPlaces
+                            //     .itemsByIndex(i)
+                            //     .location!
+                            //     .adress
+                            //     .toString())
                           ),
                         ),
-                ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          onPressed: () {
-            Navigator.of(context).pushNamed(AppRoutes.PLACE_FORM);
-          },
-          child: Icon(
-            Icons.add,
-            color: Theme.of(context).colorScheme.secondary,
-          ),
+                      ),
+              ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        onPressed: () {
+          Navigator.of(context).pushNamed(AppRoutes.PLACE_FORM);
+        },
+        child: Icon(
+          Icons.add,
+          color: Theme.of(context).colorScheme.secondary,
         ),
       ),
     );

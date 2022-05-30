@@ -36,84 +36,85 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-          appBar: AppBar(
-            iconTheme:
-                IconThemeData(color: Theme.of(context).colorScheme.secondary),
-            centerTitle: true,
-            backgroundColor: Theme.of(context).colorScheme.primary,
-            title: Text(
-              'Cadastro de locais',
-              style: TextStyle(color: Theme.of(context).colorScheme.secondary),
+    return Scaffold(
+        appBar: AppBar(
+          iconTheme:
+              IconThemeData(color: Theme.of(context).colorScheme.secondary),
+          centerTitle: true,
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          title: Text(
+            'Cadastro de locais',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.secondary,
             ),
-            elevation: 0,
           ),
-          body: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const SizedBox(height: 15),
-                ImageInputs(onSelectImage: this._selectImage),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                  child: Column(
-                    children: [
-                      TextField(
-                        controller: _titleController,
-                        decoration: InputDecoration(
-                          labelText: 'Título',
-                          labelStyle: TextStyle(
-                              color: Colors.grey.shade700,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600),
-                          border: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.grey,
-                              width: 1.5,
-                            ),
-                            borderRadius: BorderRadius.circular(25.0),
+          elevation: 1,
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const SizedBox(height: 15),
+              ImageInputs(onSelectImage: this._selectImage),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: Column(
+                  children: [
+                    TextField(
+                      controller: _titleController,
+                      cursorColor: Colors.black54,
+                      autocorrect: true,
+                      decoration: InputDecoration(
+                        labelText: 'Título',
+                        labelStyle: TextStyle(
+                            color: Colors.grey.shade700,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w600),
+                        border: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                            width: 1.5,
                           ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
-                const LocationInputs(),
-                const SizedBox(height: 15),
-                ElevatedButton.icon(
-                  style: ButtonStyle(
-                    elevation: MaterialStateProperty.all(0),
-                    backgroundColor: MaterialStateProperty.all(
-                        Theme.of(context).colorScheme.primary),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25),
-                        side: BorderSide(
-                          color: Theme.of(context).colorScheme.secondary,
-                          width: 2,
+                          borderRadius: BorderRadius.circular(20.0),
                         ),
                       ),
                     ),
-                  ),
-                  onPressed: _submitForm,
-                  icon: Icon(
-                    Icons.add,
-                    size: 25,
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
-                  label: Text(
-                    'Adicionar',
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.secondary,
-                      fontSize: 17,
+                  ],
+                ),
+              ),
+              const SizedBox(height: 30),
+              const LocationInputs(),
+              const SizedBox(height: 30),
+              ElevatedButton.icon(
+                style: ButtonStyle(
+                  elevation: MaterialStateProperty.all(0),
+                  backgroundColor: MaterialStateProperty.all(
+                      Theme.of(context).colorScheme.secondary),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25),
+                      side: BorderSide(
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 2,
+                      ),
                     ),
                   ),
                 ),
-              ],
-            ),
-          )),
-    );
+                onPressed: _submitForm,
+                icon: Icon(
+                  Icons.add,
+                  size: 25,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+                label: Text(
+                  'Adicionar',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    fontSize: 17,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:great_places/others/location_util.dart';
 import 'package:great_places/screens/map_screen.dart';
 import 'package:location/location.dart';
@@ -14,7 +15,7 @@ class _LocationInputsState extends State<LocationInputs> {
   String? _previewImageUrl;
   Future<void> _getCurrentUserLocation() async {
     final locData = await Location().getLocation();
-    final staticMapImageUrl = LocationUtil.GenerateLocationPreviewImage(
+    final staticMapImageUrl = LocationUtil.generateLocationPreviewImage(
       latitude: locData.latitude!,
       longitude: locData.longitude!,
     );
@@ -24,13 +25,13 @@ class _LocationInputsState extends State<LocationInputs> {
   }
 
   Future<void> _selectOnMap() async {
-    final selectedLocation = await Navigator.of(context).push(
+    final LatLng? selectedPosition = await Navigator.of(context).push(
       MaterialPageRoute(
         fullscreenDialog: true,
         builder: (context) => MapScreen(),
       ),
     );
-    if (selectedLocation == null) return;
+    if (selectedPosition == null) return;
   }
 
   @override
@@ -39,7 +40,7 @@ class _LocationInputsState extends State<LocationInputs> {
     return Column(
       children: [
         Container(
-          height: size.height * 0.27,
+          height: size.height * 0.40,
           width: size.width * 0.9,
           alignment: Alignment.center,
           decoration: BoxDecoration(
@@ -51,7 +52,7 @@ class _LocationInputsState extends State<LocationInputs> {
           child: _previewImageUrl == null
               ? Text(
                   'Preview indisponível',
-                  style: TextStyle(color: Colors.grey.shade700),
+                  style: TextStyle(color: Colors.grey.shade700, fontSize: 20),
                 )
               : ClipRRect(
                   borderRadius: BorderRadius.circular(15),
@@ -59,6 +60,7 @@ class _LocationInputsState extends State<LocationInputs> {
                     _previewImageUrl!,
                     fit: BoxFit.cover,
                     width: double.infinity,
+                    height: 404,
                   ),
                 ),
         ),
@@ -69,7 +71,7 @@ class _LocationInputsState extends State<LocationInputs> {
               onPressed: _getCurrentUserLocation,
               icon: Icon(
                 Icons.location_on,
-                color: Colors.grey.shade800,
+                color: Colors.red.shade500,
               ),
               label: Text(
                 'Localização atual',
@@ -78,7 +80,7 @@ class _LocationInputsState extends State<LocationInputs> {
             ),
             TextButton.icon(
               onPressed: _selectOnMap,
-              icon: Icon(Icons.map, color: Colors.grey.shade800),
+              icon: Icon(Icons.map, color: Colors.blue.shade700),
               label: Text(
                 'Selecione no mapa',
                 style: TextStyle(color: Colors.grey.shade600),

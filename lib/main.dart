@@ -4,14 +4,15 @@ import 'package:great_places/providers/great_places.dart';
 import 'package:great_places/screens/place_form_screen.dart';
 import 'package:great_places/screens/places_list_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main(List<String> args) {
+Future main(List<String> args) async{
+  await dotenv.load();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(

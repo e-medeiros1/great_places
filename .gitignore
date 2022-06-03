@@ -33,6 +33,7 @@
 .build.sh
 .AndroidManifest.xml
 .AppDelegate.swift
+.api_key.dart
 
 
 # Web related
@@ -49,4 +50,3 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-*.env

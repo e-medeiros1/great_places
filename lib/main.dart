@@ -4,10 +4,9 @@ import 'package:great_places/providers/great_places.dart';
 import 'package:great_places/screens/place_form_screen.dart';
 import 'package:great_places/screens/places_list_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-Future main(List<String> args) async{
-  await dotenv.load();
+
+ main(List<String> args) {
   runApp(const MyApp());
 }
 

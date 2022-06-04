@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:great_places/providers/great_places.dart';
 import 'package:great_places/widgets/image_inputs.dart';
 import 'package:great_places/widgets/location_inputs.dart';
@@ -13,22 +14,38 @@ class PlaceFormScreen extends StatefulWidget {
   State<PlaceFormScreen> createState() => _PlaceFormScreenState();
 }
 
-//TO-DO: Setar a cor tema e separar label do textfield entre normal e onFocused
 class _PlaceFormScreenState extends State<PlaceFormScreen> {
   final _titleController = TextEditingController();
   File? _pickedImage;
+  LatLng? _pickedPosition;
 
   void _selectImage(File pickedImage) {
-    _pickedImage = pickedImage;
+    setState(() {
+      _pickedImage = pickedImage;
+    });
+  }
+
+  void _selectPosition(LatLng position) {
+    setState(() {
+      _pickedPosition = position;
+    });
+    print(_pickedPosition);
+  }
+
+  bool _isValidForm() {
+    return _titleController.text.isNotEmpty &&
+        _pickedImage != null &&
+        _pickedPosition != null;
   }
 
   void _submitForm() {
-    if (_titleController.text.isEmpty || _pickedImage == null) {
-      return;
-    }
+    if (!_isValidForm()) return;
 
-    Provider.of<GreatPlaces>(context, listen: false)
-        .addPlaces(_titleController.text, _pickedImage!);
+    Provider.of<GreatPlaces>(context, listen: false).addPlaces(
+      _titleController.text,
+      _pickedImage as File,
+      _pickedPosition as LatLng,
+    );
 
     Navigator.of(context).pop();
   }
@@ -81,7 +98,7 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
                 ),
               ),
               const SizedBox(height: 30),
-              const LocationInputs(),
+              LocationInputs(onSelectPosition: this._selectPosition),
               const SizedBox(height: 30),
               ElevatedButton.icon(
                 style: ButtonStyle(
@@ -97,8 +114,9 @@ class _PlaceFormScreenState extends State<PlaceFormScreen> {
                       ),
                     ),
                   ),
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
-                onPressed: _submitForm,
+                onPressed: _isValidForm() ? _submitForm : null,
                 icon: Icon(
                   Icons.add,
                   size: 25,

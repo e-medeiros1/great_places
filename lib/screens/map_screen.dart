@@ -25,7 +25,6 @@ class _MapScreenState extends State<MapScreen> {
     setState(() {
       _pickedPosition = position;
     });
-    print(_pickedPosition);
   }
 
   @override
@@ -55,7 +54,6 @@ class _MapScreenState extends State<MapScreen> {
       body: GoogleMap(
         zoomGesturesEnabled: true,
         initialCameraPosition: CameraPosition(
-          
           target: LatLng(
             widget.initialLocation.latitude,
             widget.initialLocation.longitude,

@@ -18,7 +18,9 @@ class PlacesListScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: FutureBuilder(
+        
         future: Provider.of<GreatPlaces>(context, listen: false).loadPlaces(),
+        
         builder: (ctx, snapshot) => snapshot.connectionState ==
                 ConnectionState.waiting
             ? const Center(child: CircularProgressIndicator())
@@ -31,6 +33,7 @@ class PlacesListScreen extends StatelessWidget {
                 builder: (ctx, greatPlaces, ch) => greatPlaces.itemsCount == 0
                     ? ch!
                     : ListView.builder(
+                        
                         itemCount: greatPlaces.itemsCount,
                         itemBuilder: (ctx, i) => Padding(
                           padding: const EdgeInsets.only(top: 10),

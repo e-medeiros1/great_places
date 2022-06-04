@@ -19,7 +19,7 @@ class DbUtil {
       //Executando DDL(Data definition language)
       return db.execute(
           //Comandos SQL que serão executado apenas na hora da criação do DB
-          'CREATE TABLE places (id TEXT PRIMARY KEY, title TEXT, image TEXT)');
+          'CREATE TABLE places (id TEXT PRIMARY KEY, title TEXT, image TEXT, latitude REAL, longitude REAL, address TEXT)');
     }, version: 1);
   }
 

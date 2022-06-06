@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:great_places/models/places.dart';
+import 'package:great_places/Models/places.dart';
 
 class MapScreen extends StatefulWidget {
   final PlacesLocation initialLocation;
@@ -63,12 +63,12 @@ class _MapScreenState extends State<MapScreen> {
         onTap: widget.isReadOnly ? null : _selectPosition,
         //Set é uma lista de elementos que não aceita repetição
         //Se a posição não estiver selecionada vai retornar null
-        markers: _pickedPosition == null
+        markers: (_pickedPosition == null && !widget.isReadOnly)
             ? Set()
             : {
                 Marker(
                   markerId: const MarkerId('p1'),
-                  position: _pickedPosition!,
+                  position: _pickedPosition ?? widget.initialLocation as LatLng,
                 ),
               },
       ),

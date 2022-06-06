@@ -37,6 +37,8 @@ class _LocationInputsState extends State<LocationInputs> {
       ));
     } catch (e) {
       return;
+      // return SnackBar(
+      //     content: Text('Considere ativar sua localização'), duration: Duration(seconds: 2));
     }
   }
 

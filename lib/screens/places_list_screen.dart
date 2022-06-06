@@ -18,9 +18,7 @@ class PlacesListScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: FutureBuilder(
-        
         future: Provider.of<GreatPlaces>(context, listen: false).loadPlaces(),
-        
         builder: (ctx, snapshot) => snapshot.connectionState ==
                 ConnectionState.waiting
             ? const Center(child: CircularProgressIndicator())
@@ -33,24 +31,30 @@ class PlacesListScreen extends StatelessWidget {
                 builder: (ctx, greatPlaces, ch) => greatPlaces.itemsCount == 0
                     ? ch!
                     : ListView.builder(
-                        
                         itemCount: greatPlaces.itemsCount,
                         itemBuilder: (ctx, i) => Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: ListTile(
                             style: ListTileStyle.list,
-                            onTap: () {},
                             leading: CircleAvatar(
                               radius: 35,
                               backgroundImage:
                                   FileImage(greatPlaces.itemsByIndex(i).image),
                             ),
                             title: Text(greatPlaces.itemsByIndex(i).title),
-                            // subtitle: Text(greatPlaces
-                            //     .itemsByIndex(i)
-                            //     .location!
-                            //     .adress
-                            //     .toString())
+                            subtitle: Text(
+                              greatPlaces
+                                  .itemsByIndex(i)
+                                  .location!
+                                  .address
+                                  .toString(),
+                            ),
+                            onTap: () {
+                              Navigator.of(context).pushNamed(
+                                AppRoutes.PLACE_DETAIL,
+                                arguments: greatPlaces.itemsByIndex(i),
+                              );
+                            },
                           ),
                         ),
                       ),
